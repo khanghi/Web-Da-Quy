@@ -1,0 +1,23 @@
+﻿@using WebDaQuy.Models;
+<ul class="no-bullets">
+    @{ CommonInfo x = (CommonInfo)HttpContext.Current.Application["dungChung"];}
+    @foreach (ChungLoai i in x.ChungLoais)
+    {
+        <li class="drop-menu">
+
+            <a href="@Url.Action("Catogery", "allSP", new {@IDChung = (int)i.maChung })">@i.tenChung  <i class="fa fa-angle-right"></i> </a>
+            <ul class="no-bullets">
+                @foreach (LoaiSP j in x.LoaiSPs)
+                {
+                    if (j.maChung == i.maChung)
+                    {
+                        <li> <a href="@Url.Action("ProductCatogery", "allSP", new {@ID = j.maLoai })"> @j.tenLoai </a> </li>
+                    }
+
+                }
+            </ul>
+        </li>
+    }
+    <a href="#"><button class="nutAll">Xem tất cả</button></a>
+</ul>
+

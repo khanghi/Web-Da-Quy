@@ -1,0 +1,456 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QL_WebDaQuyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BaiViet">
+    <Key>
+      <PropertyRef Name="maBV" />
+    </Key>
+    <Property Name="maBV" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="tenBV" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="hinhDD" Type="varchar(max)" />
+    <Property Name="ndTomTat" Type="nvarchar" MaxLength="2000" />
+    <Property Name="ngayDang" Type="datetime" />
+    <Property Name="loaiTin" Type="nvarchar" MaxLength="30" />
+    <Property Name="noiDung" Type="nvarchar" MaxLength="4000" />
+    <Property Name="taiKhoan" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="daDuyet" Type="bit" />
+  </EntityType>
+  <EntityType Name="ChungLoai">
+    <Key>
+      <PropertyRef Name="maChung" />
+    </Key>
+    <Property Name="maChung" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tenChung" Type="nvarchar" MaxLength="88" Nullable="false" />
+    <Property Name="ghiChu" Type="ntext" />
+  </EntityType>
+  <EntityType Name="CtDonHang">
+    <Key>
+      <PropertyRef Name="soDH" />
+      <PropertyRef Name="maSP" />
+    </Key>
+    <Property Name="soDH" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="maSP" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="soLuong" Type="int" />
+    <Property Name="giaBan" Type="bigint" />
+    <Property Name="giamGia" Type="bigint" />
+  </EntityType>
+  <EntityType Name="DonHang">
+    <Key>
+      <PropertyRef Name="soDH" />
+    </Key>
+    <Property Name="soDH" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="maKH" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="taiKhoan" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="ngayDat" Type="datetime" />
+    <Property Name="daKichHoat" Type="bit" />
+    <Property Name="ngayGH" Type="datetime" />
+    <Property Name="diaChiGH" Type="nvarchar" MaxLength="250" />
+    <Property Name="ghiChu" Type="ntext" />
+  </EntityType>
+  <EntityType Name="HinhChiTiet">
+    <Key>
+      <PropertyRef Name="STT" />
+    </Key>
+    <Property Name="STT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="maSP" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="hinhCT" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KhachHang">
+    <Key>
+      <PropertyRef Name="maKH" />
+    </Key>
+    <Property Name="maKH" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="tenKH" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="soDT" Type="varchar" MaxLength="20" />
+    <Property Name="email" Type="varchar" MaxLength="50" />
+    <Property Name="diaChi" Type="nvarchar" MaxLength="250" />
+    <Property Name="ngaySinh" Type="datetime" />
+    <Property Name="gioiTinh" Type="bit" />
+    <Property Name="ghiChu" Type="ntext" />
+  </EntityType>
+  <EntityType Name="LoaiSP">
+    <Key>
+      <PropertyRef Name="maLoai" />
+    </Key>
+    <Property Name="maChung" Type="int" />
+    <Property Name="maLoai" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tenLoai" Type="nvarchar" MaxLength="88" Nullable="false" />
+    <Property Name="ghiChu" Type="ntext" />
+  </EntityType>
+  <EntityType Name="SanPham">
+    <Key>
+      <PropertyRef Name="maSP" />
+    </Key>
+    <Property Name="maSP" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="tenSP" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="hinhDD" Type="varchar(max)" />
+    <Property Name="ndTomTat" Type="nvarchar" MaxLength="2000" />
+    <Property Name="ngayDang" Type="datetime" />
+    <Property Name="maLoai" Type="int" Nullable="false" />
+    <Property Name="noiDung" Type="nvarchar" MaxLength="4000" />
+    <Property Name="taiKhoan" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="dvt" Type="nvarchar" MaxLength="32" />
+    <Property Name="daDuyet" Type="bit" />
+    <Property Name="giaBan" Type="int" />
+    <Property Name="giamGia" Type="int" />
+    <Property Name="nhaSanXuat" Type="nvarchar" MaxLength="168" />
+    <Property Name="phanLoai" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TaiKhoan">
+    <Key>
+      <PropertyRef Name="taiKhoan" />
+    </Key>
+    <Property Name="taiKhoan" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="matKhau" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="hoDem" Type="nvarchar" MaxLength="50" />
+    <Property Name="tenTV" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="ngaysinh" Type="datetime" />
+    <Property Name="gioiTinh" Type="bit" />
+    <Property Name="soDT" Type="nvarchar" MaxLength="20" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" />
+    <Property Name="diaChi" Type="nvarchar" MaxLength="250" />
+    <Property Name="trangThai" Type="bit" />
+    <Property Name="ghiChu" Type="ntext" />
+    <Property Name="ChucNang" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'QL_WebDaQuy.dbo.V_allSP' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="V_allSP">
+    <Key>
+      <PropertyRef Name="maSP" />
+      <PropertyRef Name="tenSP" />
+      <PropertyRef Name="maLoai" />
+      <PropertyRef Name="taiKhoan" />
+    </Key>
+    <Property Name="maSP" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="tenSP" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="hinhDD" Type="varchar(max)" />
+    <Property Name="ndTomTat" Type="nvarchar" MaxLength="2000" />
+    <Property Name="ngayDang" Type="datetime" />
+    <Property Name="maLoai" Type="int" Nullable="false" />
+    <Property Name="noiDung" Type="nvarchar" MaxLength="4000" />
+    <Property Name="taiKhoan" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="dvt" Type="nvarchar" MaxLength="32" />
+    <Property Name="daDuyet" Type="bit" />
+    <Property Name="giaBan" Type="int" />
+    <Property Name="giamGia" Type="int" />
+    <Property Name="nhaSanXuat" Type="nvarchar" MaxLength="168" />
+    <Property Name="phanLoai" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'QL_WebDaQuy.dbo.V_hotSP' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="V_hotSP">
+    <Key>
+      <PropertyRef Name="maSP" />
+      <PropertyRef Name="tenSP" />
+      <PropertyRef Name="maLoai" />
+      <PropertyRef Name="taiKhoan" />
+    </Key>
+    <Property Name="maSP" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="tenSP" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="hinhDD" Type="varchar(max)" />
+    <Property Name="ndTomTat" Type="nvarchar" MaxLength="2000" />
+    <Property Name="ngayDang" Type="datetime" />
+    <Property Name="maLoai" Type="int" Nullable="false" />
+    <Property Name="noiDung" Type="nvarchar" MaxLength="4000" />
+    <Property Name="taiKhoan" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="dvt" Type="nvarchar" MaxLength="32" />
+    <Property Name="daDuyet" Type="bit" />
+    <Property Name="giaBan" Type="int" />
+    <Property Name="giamGia" Type="int" />
+    <Property Name="nhaSanXuat" Type="nvarchar" MaxLength="168" />
+    <Property Name="phanLoai" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'QL_WebDaQuy.dbo.V_newSP' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="V_newSP">
+    <Key>
+      <PropertyRef Name="maSP" />
+      <PropertyRef Name="tenSP" />
+      <PropertyRef Name="maLoai" />
+      <PropertyRef Name="taiKhoan" />
+    </Key>
+    <Property Name="maSP" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="tenSP" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="hinhDD" Type="varchar(max)" />
+    <Property Name="ndTomTat" Type="nvarchar" MaxLength="2000" />
+    <Property Name="ngayDang" Type="datetime" />
+    <Property Name="maLoai" Type="int" Nullable="false" />
+    <Property Name="noiDung" Type="nvarchar" MaxLength="4000" />
+    <Property Name="taiKhoan" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="dvt" Type="nvarchar" MaxLength="32" />
+    <Property Name="daDuyet" Type="bit" />
+    <Property Name="giaBan" Type="int" />
+    <Property Name="giamGia" Type="int" />
+    <Property Name="nhaSanXuat" Type="nvarchar" MaxLength="168" />
+    <Property Name="phanLoai" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'QL_WebDaQuy.dbo.V_soSP' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="V_soSP">
+    <Key>
+      <PropertyRef Name="maLoai" />
+    </Key>
+    <Property Name="maLoai" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SoLuong" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'QL_WebDaQuy.dbo.V_tlSP' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="V_tlSP">
+    <Key>
+      <PropertyRef Name="maSP" />
+      <PropertyRef Name="tenSP" />
+      <PropertyRef Name="maLoai" />
+      <PropertyRef Name="taiKhoan" />
+    </Key>
+    <Property Name="maSP" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="tenSP" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="hinhDD" Type="varchar(max)" />
+    <Property Name="ndTomTat" Type="nvarchar" MaxLength="2000" />
+    <Property Name="ngayDang" Type="datetime" />
+    <Property Name="maLoai" Type="int" Nullable="false" />
+    <Property Name="noiDung" Type="nvarchar" MaxLength="4000" />
+    <Property Name="taiKhoan" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="dvt" Type="nvarchar" MaxLength="32" />
+    <Property Name="daDuyet" Type="bit" />
+    <Property Name="giaBan" Type="int" />
+    <Property Name="giamGia" Type="int" />
+    <Property Name="nhaSanXuat" Type="nvarchar" MaxLength="168" />
+    <Property Name="phanLoai" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK__BaiViet__taiKhoa__182C9B23">
+    <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="1" />
+    <End Role="BaiViet" Type="Self.BaiViet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaiKhoan">
+        <PropertyRef Name="taiKhoan" />
+      </Principal>
+      <Dependent Role="BaiViet">
+        <PropertyRef Name="taiKhoan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CtDonHang__maSP__38996AB5">
+    <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
+    <End Role="CtDonHang" Type="Self.CtDonHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SanPham">
+        <PropertyRef Name="maSP" />
+      </Principal>
+      <Dependent Role="CtDonHang">
+        <PropertyRef Name="maSP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CtDonHang__soDH__37A5467C">
+    <End Role="DonHang" Type="Self.DonHang" Multiplicity="1" />
+    <End Role="CtDonHang" Type="Self.CtDonHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DonHang">
+        <PropertyRef Name="soDH" />
+      </Principal>
+      <Dependent Role="CtDonHang">
+        <PropertyRef Name="soDH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DonHang__maKH__32E0915F">
+    <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="1" />
+    <End Role="DonHang" Type="Self.DonHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KhachHang">
+        <PropertyRef Name="maKH" />
+      </Principal>
+      <Dependent Role="DonHang">
+        <PropertyRef Name="maKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DonHang__taiKhoa__33D4B598">
+    <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="1" />
+    <End Role="DonHang" Type="Self.DonHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaiKhoan">
+        <PropertyRef Name="taiKhoan" />
+      </Principal>
+      <Dependent Role="DonHang">
+        <PropertyRef Name="taiKhoan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__HinhChiTie__maSP__300424B4">
+    <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
+    <End Role="HinhChiTiet" Type="Self.HinhChiTiet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SanPham">
+        <PropertyRef Name="maSP" />
+      </Principal>
+      <Dependent Role="HinhChiTiet">
+        <PropertyRef Name="maSP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SanPham__maLoai__24927208">
+    <End Role="LoaiSP" Type="Self.LoaiSP" Multiplicity="1" />
+    <End Role="SanPham" Type="Self.SanPham" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiSP">
+        <PropertyRef Name="maLoai" />
+      </Principal>
+      <Dependent Role="SanPham">
+        <PropertyRef Name="maLoai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SanPham__taiKhoa__267ABA7A">
+    <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="1" />
+    <End Role="SanPham" Type="Self.SanPham" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaiKhoan">
+        <PropertyRef Name="taiKhoan" />
+      </Principal>
+      <Dependent Role="SanPham">
+        <PropertyRef Name="taiKhoan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_loaiSP_chungLoai">
+    <End Role="ChungLoai" Type="Self.ChungLoai" Multiplicity="0..1" />
+    <End Role="LoaiSP" Type="Self.LoaiSP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ChungLoai">
+        <PropertyRef Name="maChung" />
+      </Principal>
+      <Dependent Role="LoaiSP">
+        <PropertyRef Name="maChung" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="F_soSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+    <Parameter Name="maLoai" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="QL_WebDaQuyModelStoreContainer">
+    <EntitySet Name="BaiViet" EntityType="Self.BaiViet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ChungLoai" EntityType="Self.ChungLoai" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CtDonHang" EntityType="Self.CtDonHang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DonHang" EntityType="Self.DonHang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HinhChiTiet" EntityType="Self.HinhChiTiet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KhachHang" EntityType="Self.KhachHang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LoaiSP" EntityType="Self.LoaiSP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SanPham" EntityType="Self.SanPham" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TaiKhoan" EntityType="Self.TaiKhoan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="V_allSP" EntityType="Self.V_allSP" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [V_allSP].[maSP] AS [maSP], 
+    [V_allSP].[tenSP] AS [tenSP], 
+    [V_allSP].[hinhDD] AS [hinhDD], 
+    [V_allSP].[ndTomTat] AS [ndTomTat], 
+    [V_allSP].[ngayDang] AS [ngayDang], 
+    [V_allSP].[maLoai] AS [maLoai], 
+    [V_allSP].[noiDung] AS [noiDung], 
+    [V_allSP].[taiKhoan] AS [taiKhoan], 
+    [V_allSP].[dvt] AS [dvt], 
+    [V_allSP].[daDuyet] AS [daDuyet], 
+    [V_allSP].[giaBan] AS [giaBan], 
+    [V_allSP].[giamGia] AS [giamGia], 
+    [V_allSP].[nhaSanXuat] AS [nhaSanXuat], 
+    [V_allSP].[phanLoai] AS [phanLoai]
+    FROM [dbo].[V_allSP] AS [V_allSP]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="V_hotSP" EntityType="Self.V_hotSP" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [V_hotSP].[maSP] AS [maSP], 
+    [V_hotSP].[tenSP] AS [tenSP], 
+    [V_hotSP].[hinhDD] AS [hinhDD], 
+    [V_hotSP].[ndTomTat] AS [ndTomTat], 
+    [V_hotSP].[ngayDang] AS [ngayDang], 
+    [V_hotSP].[maLoai] AS [maLoai], 
+    [V_hotSP].[noiDung] AS [noiDung], 
+    [V_hotSP].[taiKhoan] AS [taiKhoan], 
+    [V_hotSP].[dvt] AS [dvt], 
+    [V_hotSP].[daDuyet] AS [daDuyet], 
+    [V_hotSP].[giaBan] AS [giaBan], 
+    [V_hotSP].[giamGia] AS [giamGia], 
+    [V_hotSP].[nhaSanXuat] AS [nhaSanXuat], 
+    [V_hotSP].[phanLoai] AS [phanLoai]
+    FROM [dbo].[V_hotSP] AS [V_hotSP]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="V_newSP" EntityType="Self.V_newSP" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [V_newSP].[maSP] AS [maSP], 
+    [V_newSP].[tenSP] AS [tenSP], 
+    [V_newSP].[hinhDD] AS [hinhDD], 
+    [V_newSP].[ndTomTat] AS [ndTomTat], 
+    [V_newSP].[ngayDang] AS [ngayDang], 
+    [V_newSP].[maLoai] AS [maLoai], 
+    [V_newSP].[noiDung] AS [noiDung], 
+    [V_newSP].[taiKhoan] AS [taiKhoan], 
+    [V_newSP].[dvt] AS [dvt], 
+    [V_newSP].[daDuyet] AS [daDuyet], 
+    [V_newSP].[giaBan] AS [giaBan], 
+    [V_newSP].[giamGia] AS [giamGia], 
+    [V_newSP].[nhaSanXuat] AS [nhaSanXuat], 
+    [V_newSP].[phanLoai] AS [phanLoai]
+    FROM [dbo].[V_newSP] AS [V_newSP]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="V_soSP" EntityType="Self.V_soSP" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [V_soSP].[maLoai] AS [maLoai], 
+    [V_soSP].[SoLuong] AS [SoLuong]
+    FROM [dbo].[V_soSP] AS [V_soSP]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="V_tlSP" EntityType="Self.V_tlSP" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [V_tlSP].[maSP] AS [maSP], 
+    [V_tlSP].[tenSP] AS [tenSP], 
+    [V_tlSP].[hinhDD] AS [hinhDD], 
+    [V_tlSP].[ndTomTat] AS [ndTomTat], 
+    [V_tlSP].[ngayDang] AS [ngayDang], 
+    [V_tlSP].[maLoai] AS [maLoai], 
+    [V_tlSP].[noiDung] AS [noiDung], 
+    [V_tlSP].[taiKhoan] AS [taiKhoan], 
+    [V_tlSP].[dvt] AS [dvt], 
+    [V_tlSP].[daDuyet] AS [daDuyet], 
+    [V_tlSP].[giaBan] AS [giaBan], 
+    [V_tlSP].[giamGia] AS [giamGia], 
+    [V_tlSP].[nhaSanXuat] AS [nhaSanXuat], 
+    [V_tlSP].[phanLoai] AS [phanLoai]
+    FROM [dbo].[V_tlSP] AS [V_tlSP]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__BaiViet__taiKhoa__182C9B23" Association="Self.FK__BaiViet__taiKhoa__182C9B23">
+      <End Role="TaiKhoan" EntitySet="TaiKhoan" />
+      <End Role="BaiViet" EntitySet="BaiViet" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CtDonHang__maSP__38996AB5" Association="Self.FK__CtDonHang__maSP__38996AB5">
+      <End Role="SanPham" EntitySet="SanPham" />
+      <End Role="CtDonHang" EntitySet="CtDonHang" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CtDonHang__soDH__37A5467C" Association="Self.FK__CtDonHang__soDH__37A5467C">
+      <End Role="DonHang" EntitySet="DonHang" />
+      <End Role="CtDonHang" EntitySet="CtDonHang" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DonHang__maKH__32E0915F" Association="Self.FK__DonHang__maKH__32E0915F">
+      <End Role="KhachHang" EntitySet="KhachHang" />
+      <End Role="DonHang" EntitySet="DonHang" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DonHang__taiKhoa__33D4B598" Association="Self.FK__DonHang__taiKhoa__33D4B598">
+      <End Role="TaiKhoan" EntitySet="TaiKhoan" />
+      <End Role="DonHang" EntitySet="DonHang" />
+    </AssociationSet>
+    <AssociationSet Name="FK__HinhChiTie__maSP__300424B4" Association="Self.FK__HinhChiTie__maSP__300424B4">
+      <End Role="SanPham" EntitySet="SanPham" />
+      <End Role="HinhChiTiet" EntitySet="HinhChiTiet" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SanPham__maLoai__24927208" Association="Self.FK__SanPham__maLoai__24927208">
+      <End Role="LoaiSP" EntitySet="LoaiSP" />
+      <End Role="SanPham" EntitySet="SanPham" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SanPham__taiKhoa__267ABA7A" Association="Self.FK__SanPham__taiKhoa__267ABA7A">
+      <End Role="TaiKhoan" EntitySet="TaiKhoan" />
+      <End Role="SanPham" EntitySet="SanPham" />
+    </AssociationSet>
+    <AssociationSet Name="fk_loaiSP_chungLoai" Association="Self.fk_loaiSP_chungLoai">
+      <End Role="ChungLoai" EntitySet="ChungLoai" />
+      <End Role="LoaiSP" EntitySet="LoaiSP" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

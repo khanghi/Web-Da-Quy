@@ -1,0 +1,51 @@
+﻿@{
+    var Loais = ViewBag.Loais;
+}
+<div class="container">
+    <!-- Breadcrumb -->
+    <ul class="breadcrumb">
+        <li><a href="/Home/Index">Trang chủ</a></li>
+        <li><a href="/allSP/Index">Tất cả sản phẩm</a></li>
+        <li>@ViewBag.Title</li>
+    </ul>
+    <!-- phần 1: Sidebar and navbar -->
+    <div class="flex">
+        <div class="sidebar">
+            <div class="megamenu-wrapper">
+                <div class="megamenu-head text-center">
+                    <span><i class="fa fa-bars"></i> Danh mục sản phẩm</span>
+                </div>
+                <div class="megamenu-body show-menu">
+                    <!-- phần chi tiết danh mục sản phẩm-->
+                    @Html.Partial("_SideBar")
+                </div>
+            </div>
+        </div>
+
+        <!-- Phần navbar -->
+        <div class="content_navbar">
+            <div class="content_nav">
+                @Html.Partial("_NavBar")
+            </div>
+            <!-- CONTENT -->
+            <h3 class="tieuDe-danhMuc">TẤT CẢ SẢN PHẨM</h3>
+            <div class="danhmuc space-between">
+                @foreach (var i in Loais)
+                {
+                    <div class="home-collection-item">
+                        <a href="@Url.Action("Index", "detailSP", new {@IDSP = (string)i.maSP })">
+                            <div class="home-collection-img"><img src="~/Images/@i.hinhDD" alt=""></div>
+                            <p class="tenSP">@i.tenSP Giấy viết tác phẩm thư pháp ô tròn ngọai đương set 10 tờ</p>
+                            <p class="giaSP">@i.giaBan,000₫</p>
+                            <button class="home-collection-btn js-giayViet">
+                                <a href="#"><i class="fa-solid fa-eye"></i></a>
+                                CHI TIẾT
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </button>
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

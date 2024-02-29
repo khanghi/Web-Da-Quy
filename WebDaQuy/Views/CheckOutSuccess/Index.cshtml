@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "Thank you!";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    h2.thank {
+        margin-top: 50px;
+        margin-bottom: 70px;
+    }
+</style>
+
+<div class="container">
+    <div class="flex">
+
+        <div class="sidebar">
+            <div class="megamenu-wrapper">
+                <div class="megamenu-head text-center">
+                    <span><i class="fa fa-bars"></i> Danh mục sản phẩm</span>
+                </div>
+                <div class="megamenu-body megamenu-body--hide">
+                    <!-- phần chi tiết danh mục sản phẩm-->
+                    @Html.Partial("_SideBarSimple")
+                </div>
+            </div>
+        </div>
+
+        <!-- Phần navbar -->
+        <div class="content_navbar">
+            <div class="content_nav">
+                @Html.Partial("_NavBar")
+            </div>
+        </div>
+    </div>
+    <h2 class="thank">Cảm ơn Quý Khách Đã Mua Hàng ở Thư Pháp Shop!</h2>
+</div>
+

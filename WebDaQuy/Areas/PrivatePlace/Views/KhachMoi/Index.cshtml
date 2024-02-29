@@ -1,0 +1,82 @@
+﻿@using WebDaQuy.Models;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/PrivatePlace/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Danh sách khách hàng</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Danh sách khách hàng</a></li>
+                        <li class="breadcrumb-item active">Khách hàng mới</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">DataTable with minimal features & hover style</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="example2" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Stt</th>
+                                        <th>Số điện thoại</th>
+                                        <th>Tên khách hàng</th>
+                                        <th>Giới tính</th>
+                                        <th>Địa chỉ</th>
+                                        <th>Tài Khoản</th>
+                                        <th>Email</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{ int stt = 0;
+                                        foreach (TaiKhoan i in CommonInfo.getKhachHang())
+                                        {
+                                            <tr>
+                                                <td>@(stt++)</td>
+                                                <td>@i.soDT</td>
+                                                <td>@i.tenTV</td>
+                                                @if (i.gioiTinh == true)
+                                                {
+                                                    <td>Nam</td>
+                                                }
+                                                else
+                                                {
+                                                    <td>Nữ</td>
+}
+                                                <td>@i.diaChi</td>
+                                                <td>@i.taiKhoan1</td>
+                                                <td>@i.email</td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+

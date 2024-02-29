@@ -1,0 +1,156 @@
+﻿@using WebDaQuy.Models;
+@{
+    ViewBag.Title = "Home";
+}
+@{ CommonInfo x = (CommonInfo)HttpContext.Current.Application["dungChung"];}
+<div class="container">
+    <div class="flex">
+
+        <div class="sidebar">
+            <div class="megamenu-wrapper">
+                <div class="megamenu-head text-center">
+                    <span><i class="fa fa-bars"></i> Danh mục sản phẩm</span>
+                </div>
+                <div class="megamenu-body">
+                    <!-- phần chi tiết danh mục sản phẩm-->
+                    @Html.Partial("_SideBarSimple")
+                </div>
+            </div>
+        </div>
+
+        <!-- Phần navbar -->
+        <div class="content_navbar">
+            <div class="content_nav">
+                @Html.Partial("_NavBar")
+            </div>
+            <div>
+                <div id="demo" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="/Images/slideshow.jpg" height="429px;>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="/Images/slideshow_2.jpg" height="429px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Sản phẩm / home-collection  -->
+    <!-- Sản phẩm tiêu biểu năm -->
+    <div class="home-collection">
+        <div class="home-collection-header">
+            <a href="#">SẢN PHẨM NỔI BẬT 2023</a>
+        </div>
+        <div class="home-collection-body flex">
+            @foreach (var i in x.V_hotSPs)
+            {
+                <div class="home-collection-item">
+                    <a href="@Url.Action("Index", "detailSP", new {@IDSP = (string)i.maSP })">
+                        <div class="home-collection-img"><img src="~/Images/@i.hinhDD" alt=""></div>
+                        <p class="tenSP">@i.tenSP</p>
+                        <p class="giaSP">@i.giaBan,000₫</p>
+                        <button class="home-collection-btn js-giayViet">
+                            <a href="#"><i class="fa-solid fa-eye"></i></a>
+                            CHI TIẾT
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </button>
+                    </a>
+                </div>
+            }
+            </div>
+        <div class="home-collection-footer">
+            <button class="btn"><a href="@Url.Action("Index", "allSP")">XEM THÊM <i class="fa-solid fa-chevron-right"></i> </a></button>
+        </div>
+    </div>
+    <!-- Sản phẩm bán chạy -->
+    <div class="home-collection">
+        <div class="home-collection-header">
+            <a href="#">SẢN PHẨM ĐƯỢC QUAN TÂM</a>
+        </div>
+        <div class="home-collection-body flex">
+            @foreach (var i in x.V_newSPs)
+            {
+                <div class="home-collection-item">
+                    <a href="@Url.Action("Index", "detailSP", new {@IDSP = (string)i.maSP })">
+                        <div class="home-collection-img"><img src="~/Images/@i.hinhDD" alt=""></div>
+                        <p class="tenSP">@i.tenSP</p>
+                        <p class="giaSP">@i.giaBan,000₫</p>
+                        <button class="home-collection-btn js-giayViet">
+                            <a href="#"><i class="fa-solid fa-eye"></i></a>
+                            CHI TIẾT
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </button>
+                    </a>
+                </div>
+            }
+        </div>
+        <div class="home-collection-footer">
+            <button class="btn"><a href="./allSP.html">XEM THÊM <i class="fa-solid fa-chevron-right"></i> </a></button>
+        </div>
+    </div>
+    <!-- Sản phẩm thanh lý, khuyến mãi -->
+    <div class="home-collection">
+        <div class="home-collection-header">
+            <a href="#">THANH LÝ, KHUYẾN MẠI</a>
+        </div>
+        <div class="home-collection-body flex">
+            @foreach (var i in x.V_tlSPs)
+            {
+                <div class="home-collection-item">
+                    <a href="@Url.Action("Index", "detailSP", new {@IDSP = (string)i.maSP })">
+                        <div class="home-collection-img"><img src="~/Images/@i.hinhDD" alt=""></div>
+                        <p class="tenSP">@i.tenSP</p>
+                        <p class="giaSP">@i.giaBan,000₫</p>
+                        <button class="home-collection-btn js-giayViet">
+                            <a href="#"><i class="fa-solid fa-eye"></i></a>
+                            CHI TIẾT
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </button>
+                    </a>
+                </div>
+            }
+        </div>
+        <div class="home-collection-footer">
+            <button class="btn"><a href="">XEM THÊM <i class="fa-solid fa-chevron-right"></i> </a></button>
+        </div>
+    </div>
+    <!-- Tất cả sản phẩm -->
+    <div class="home-collection">
+        <div class="home-collection-header">
+            <a href="./allSP.html">TẤT CẢ SẢN PHẨM</a>
+        </div>
+        <div class="home-collection-body flex">
+            @foreach (var i in x.V_allSPs)
+            {
+                <div class="home-collection-item">
+                    <a href="@Url.Action("Index", "detailSP", new {@IDSP = (string)i.maSP })">
+                        <div class="home-collection-img"><img src="~/Images/@i.hinhDD" alt=""></div>
+                        <p class="tenSP">@i.tenSP</p>
+                        <p class="giaSP">@i.giaBan,000₫</p>
+                        <button class="home-collection-btn js-giayViet">
+                            <a href="#"><i class="fa-solid fa-eye"></i></a>
+                            CHI TIẾT
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </button>
+                    </a>
+                </div>
+            }
+        </div>
+        <div class="home-collection-footer">
+            <button class="btn"><a href="./allSP.html">XEM THÊM <i class="fa-solid fa-chevron-right"></i> </a></button>
+        </div>
+    </div>
+    <!-- Các kênh bán hàng -->
+    <div class="home-collection">
+        <div class="home-collection-header">
+            <a href="#">CÁC KÊNH BÁN HÀNG</a>
+        </div>
+        <div class="home-collection-banHang">
+            <a href="#"><img src="/Images/image_logo_shoppe.webp" alt=""></a>
+            <a href="https://www.facebook.com/hy.van.777158/"><img src="~/Images/image_logo_fb.webp" alt=""></a>
+            <a href="https://zalo.me/0832497984"><img src="~/Images/image_logo_zalo.webp" alt=""></a>
+        </div>
+    </div>
+</div>

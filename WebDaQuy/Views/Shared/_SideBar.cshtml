@@ -1,0 +1,29 @@
+﻿@using WebDaQuy.Models;
+<!-- phần chi tiết danh mục sản phẩm-->
+<ul class="no-bullets">
+    @{
+        CommonInfo x = (CommonInfo)HttpContext.Current.Application["dungChung"];
+    }
+    @foreach (ChungLoai i in x.ChungLoais)
+    {
+        <li class="raise-menu">
+            <a href="@Url.Action("Catogery", "allSP", new {@IDChung = i.maChung })">@i.tenChung </a>
+            <ul class="no-bullets">
+                @foreach (LoaiSP j in x.LoaiSPs)
+                {
+                    if (j.maChung == i.maChung)
+                    {
+                        foreach (V_soSP k in x.V_soSPs)
+                        {
+                            if (k.maLoai == j.maLoai)
+                            {
+                                <li> <a href="@Url.Action("ProductCatogery", "allSP", new { @ID = j.maLoai })">@j.tenLoai (@k.SoLuong)</a> </li>
+                            }
+                        }
+                    }
+                }
+            </ul>
+        </li>
+    }
+</ul>
+

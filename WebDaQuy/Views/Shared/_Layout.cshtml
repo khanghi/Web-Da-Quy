@@ -1,0 +1,201 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"> <!--reset-->
+    <link rel="stylesheet" href="/fonts/fontawesome-free-6.1.2/css/all.min.css">   <!--icon-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"> <!--bootstrap.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css" integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="/Content/styles/base.css" rel="stylesheet" />
+    <link href="/Content/styles/main.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container-fluit">
+        <header class="header">
+            <nav class="header__navbar header__navbar-top">
+                <div class="container">
+                    <div class="navbar-span">
+                        <span><i class="fa-solid fa-square-phone"></i> Hotline: 0832497984 (Mis Giau) <i class="fa-solid fa-square-phone"></i> Hotline: 083249984 (Cam Mien) - TẠI CỬA HÀNG: 0832497984</span>
+                    </div>
+                    <ul class="header__navbar-list">
+                        <li class="header__navbar-item separate">
+                            <a href="">Điều khoản chính sách</a>
+                        </li>
+                        @if (Session["TtDangNhap"] == null)
+                        {
+                            <li class="header__navbar-item separate">
+                                <button class="btn js-login"><i class="fa-solid fa-right-to-bracket"></i> Đăng nhập</button>
+                            </li>
+                            <li class="header__navbar-item">
+                                <button class="btn js-register"><i class="fa-solid fa-user-plus"></i> Đăng ký</button>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="header__navbar-item">
+                                <a href="/Login/Logout"><button class="btn"><i class="fa-solid fa-right-to-bracket"></i> Đăng xuất</button></a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </nav>
+            <nav class="header__navbar header__navbar-bottom">
+                <div class="container">
+                    <img src="/Images/logo.jpg" alt="" class="logo" width="286px;">
+                    <div class="search_form">
+                        <form action="#" method="post">
+                            <select id="menu">
+                                <option>Tất cả</option>
+                                <option>Trang suc khác</option>
+                            </select>
+                            <input type="text" placeholder="Hãy điền tên sản phẩm bạn muốn tìm kiếm ^^...">
+                            <span><a href="@Url.Action("Index", "allSP")"><i class="fa-solid fa-magnifying-glass"></i></a></span>
+                        </form>
+                    </div>
+                    <div class="bag">
+                        <a href="@Url.Action("Index", "Cart")" class="bag_nut">
+                            <i class="fa-solid fa-cart-shopping"></i> Giỏ hàng <span class="soluong">0</span>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+    </div>
+
+    <div class="container">
+        @RenderBody()
+    </div>
+
+
+
+    </div>
+    <!-- Footer -->
+    <div class="container-fluit">
+        <footer class="footer">
+            <div class="container">
+                <div class="footer_adress">
+                    <div class="ft_adress-logo">
+                        <a href="#"><img src="/Images/logo.jpg" alt=""></a>
+                        <h4 class="logo-gioiThieu">TRANG SỨC ĐÁ QUÝ PHONG THỦY TRƯNG BÀY</h4>
+                    </div>
+                    <a href="#" style="color: var(--org-color);">Xem thêm</a>
+                    <ul class="no-bullets">
+                        <li class="ft_adress-item">Địa chỉ: <a href="#">331 QL1A, An Phú Đông, Quận 12, Thành phố Hồ Chí Minh</a></li>
+                        <li class="ft_adress-item">Hotline: <a href="#">0832497984 (Mis Giau)</a></li>
+                        <li class="ft_adress-item">Hotline: <a href="#">0832497984 (Cam Mien) - TẠI CỬA HÀNG: 0832497984</a></li>
+                        <li class="ft_adress-item">Email: <a href="#">giauhn2k3@gmail.com</a></li>
+                    </ul>
+                    <div class="ft_logo-kiemDuyet">
+                        <img src="/Images/footer_logo_1.png" alt="">
+                        <img src="/Images/footer_logo_2.webp" alt="">
+                    </div>
+                </div>
+                <div class="footer_nav">
+                    <h4>THÔNG TIN</h4>
+                    <ul class="no-bullets">
+                        <li class="ft_nav-item"><a href="#">Giới thiệu</a></li>
+                        <li class="ft_nav-item"><a href="#">Liên hệ</a></li>
+                        <li class="ft_nav-item"><a href="#">Tuyển dụng</a></li>
+                        <li class="ft_nav-item"><a href="#">Chính sách bán hàng</a></li>
+                        <li class="ft_nav-item"><a href="#">Phương thức thanh toán</a></li>
+                        <li class="ft_nav-item"><a href="#">Chính sách đổi trả</a></li>
+                        <li class="ft_nav-item"><a href="#">Chính sách bảo mật</a></li>
+                    </ul>
+                </div>
+                <div class="footer_fanpage">
+                    <h4>FANPAGE</h4>
+                    <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FDaiHocNguyenTatThanh&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="280" height="125" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                </div>
+                <div class="map">
+                    <h4>BẢN ĐỒ</h4>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.3651338663763!2d106.6920434097738!3d10.859808157607237!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529c17978287d%3A0xec48f5a17b7d5741!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBOZ3V54buFbiBU4bqldCBUaMOgbmggLSBDxqEgc-G7nyBxdeG6rW4gMTI!5e0!3m2!1svi!2s!4v1685239600183!5m2!1svi!2s" width="354" height="210" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p style="margin-bottom: 15px;">Copyrights © 2023 by Shop Trang Sức Đá Quý Phong Thủy.</p>
+                <p>Hộ Kinh Doanh Trang Sức Đá Quý Phong Thủy Trưng Bày Việt Nam</p>
+                <p>Số ĐKKD: 010000 cấp lần đầu tiên vào ngày 24/03/2023. Nơi cấp: ĐH Nguyễn Tất Thành.</p>
+            </div>
+        </footer>
+    </div>
+    <!-- back-to-top -->
+    <a href="#"><div class="back-to-top"><i class="fa fa-angle-up" aria-hidden="true"></i></div></a>
+    <!-- fixed-social-network -->
+    <div id="mySidenav">
+        <a href="https://www.facebook.com/hy.van.777158/" class="fb-icon fixed-icon"><i class="fa-brands fa-facebook-f"></i> Facebook</a>
+        <a href="#" class="ins-icon fixed-icon"><i class="fa-brands fa-instagram"></i>Instagram</a>
+        <a href="#" class="yt-icon fixed-icon"><i class="fa-brands fa-youtube"></i>Youtube</a>
+        <a href="#" class="tw-icon fixed-icon"><i class="fa-brands fa-twitter"></i>Twitter</a>
+    </div>
+    <!-- Modal/phần nổi -->
+    <div class="modal" id="form_login">
+        <!-- cửa sổ đăng nhập -->
+        <div class="header_form login">
+            <div class="close"><i class="fa-solid fa-xmark"></i></div>
+            <h1>Đăng nhập</h1>
+            <a href="#"><button class="motNua fb btn">Facebook</button></a>
+            <a href="#"><button class="motNua gg btn">Google</button></a>
+            @using (Html.BeginForm("Index", "Login", FormMethod.Post)) //login
+            {
+                @Html.AntiForgeryToken()
+                @Html.TextBox("Acc", "", new { @class = "form-control motDong", @placeholder = "Tài khoản" })
+                @Html.Password("Pass", "", new { @class = "form-control motDong", @placeholder = "Mật khẩu" })
+                <button type="submit" class="btn motDong">Đăng nhập</button>
+            }
+            <a href="/Home/Index">Quên mật khẩu?</a>
+            <hr />
+            <div class="header_form_footer">
+                <a href="">Trợ giúp</a>
+            </div>
+        </div>
+        <!-- cửa sổ đắng ký -->
+        <div class="header_form register">
+            <div class="close"><i class="fa-solid fa-xmark"></i></div>
+            <h1>Tạo tài khoản</h1>
+            @using (Html.BeginForm("Register", "Login", FormMethod.Post))
+            {
+                @Html.ValidationSummary(true)
+                <input type="text" placeholder="Tên" class="motDong" name="tenTV">
+                <input type="text" placeholder="Họ" class="motDong" name="hoDem">
+                <input type="text" placeholder="Địa chỉ" class="motDong" name="diaChi">
+                <p style="color:red">@ViewData["loi4"]</p>
+                <input type="text" placeholder="Số điện thoại" class="motDong" name="soDT">
+                <p style="color:red">@ViewData["loi5"]</p>
+                <input type="email" placeholder="Email" class="motDong" name="email">
+                <p style="color:red">@ViewData["loi3"]</p>
+                <input type="text" placeholder="Tên Đăng nhập" class="motDong" name="taiKhoan1">
+                <p style="color:red">@ViewData["loi1"]</p>
+                <p style="color:red">@ViewData["loi6"]</p>
+                <input type="password" placeholder="Mật khẩu" class="motDong" name="matKhau">
+                <p style="color:red">@ViewData["loi2"]</p>
+                <button type="submit" class="motDong btn">Đăng ký</button>
+            }
+            <hr />
+            <div class="header_form_footer">
+                <a href="https://www.thuphapdungpham.com/pages/huong-dan-mua-hang">Trợ giúp</a>
+            </div>
+        </div>
+        <!-- cửa sổ chi tiết -->
+       
+    </div>
+
+
+
+
+
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+    <!-- jQuery library -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js" integrity="sha512-HGOnQO9+SP1V92SrtZfjqxxtLmVzqZpjFFekvzZVWoiASSQgSr4cw9Kqd2+l8Llp4Gm0G8GIFJ4ddwZilcdb8A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/elevatezoom/3.0.8/jquery.elevatezoom.min.js" integrity="sha512-egjn0g4nyX3074dTJbuzFHdPDu17RP8ElcYpQuQbl9VUu6RKQaqlX4dJJ/l7Z5fFniqLSOJgytwP0FiKf4MEfA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/Scripts/myScript.js"></script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+﻿@using WebDaQuy.Models;
+@model WebDaQuy.Models.SanPham
+@{
+    List<SanPham> sp = (List<SanPham>)ViewData["DanhSachSp"];
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/PrivatePlace/Views/Shared/_Layout.cshtml";
+
+}
+
+<style>
+    form {
+        display: inline;
+    }
+</style>
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Danh sách các bài viết</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Bài viết</a></li>
+                        <li class="breadcrumb-item active">Danh sách bài viết</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Danh mục các bài viết</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="example2" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Tên Sản Phẩm</th>
+                                        <th>Giá bán</th>
+                                        <th>Giá Giảm</th>
+                                        <th>Ngày đăng</th>
+                                        <th>Tài khoản</th>
+                                        <th>Công cụ</th>
+                                        <th>Mã Loại</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                        foreach (SanPham i in sp)
+                                        {
+                                            <tr>
+                                                <td>@i.tenSP</td>
+                                                <td>@String.Format("{0:###,###}", i.giaBan),000</td>
+                                                <td>@i.giamGia</td>
+                                                <td>@String.Format("{0: dd/MM/yyyy}", i.ngayDang)</td>
+                                                <td>@i.TaiKhoan1.hoDem @i.TaiKhoan1.tenTV</td>
+                                                <td>
+                                                    @using (Html.BeginForm("Active", "DangKinhDoanh", FormMethod.Post))
+                                                    {
+                                                        <input type="hidden" name="maSanPham" value="@i.maSP" />
+                                                        <button class="btn btn-primary" title="Chặn hiển thị bài viết này">
+                                                            @ViewBag.TenCuaNut
+                                                        </button>
+                                                    }
+                                                    @using (Html.BeginForm("Delete", "DangKinhDoanh", FormMethod.Post))
+                                                    {
+                                                        <input type="hidden" name="maSanPham" value="@i.maSP" />
+                                                        <button class="btn btn-danger" title="xóa bài viết">
+                                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                                            Xóa Bài
+                                                        </button>
+                                                    }
+
+                                                </td>
+                                                <td>@i.maLoai</td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+</div>
+<!-- /.content -->

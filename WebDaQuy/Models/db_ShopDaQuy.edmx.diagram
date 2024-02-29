@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="99568ff0632e413885ce23d4e45c3a94" Name="Diagram1">
+        <EntityTypeShape EntityType="QL_WebDaQuyModel.BaiViet" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_WebDaQuyModel.ChungLoai" Width="1.5" PointX="1.5" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_WebDaQuyModel.CtDonHang" Width="1.5" PointX="8.25" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_WebDaQuyModel.DonHang" Width="1.5" PointX="6" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_WebDaQuyModel.HinhChiTiet" Width="1.5" PointX="5.25" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_WebDaQuyModel.KhachHang" Width="1.5" PointX="3.75" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_WebDaQuyModel.LoaiSP" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_WebDaQuyModel.SanPham" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_WebDaQuyModel.TaiKhoan" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_WebDaQuyModel.V_allSP" Width="1.5" PointX="8.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_WebDaQuyModel.V_hotSP" Width="1.5" PointX="10.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_WebDaQuyModel.V_newSP" Width="1.5" PointX="10.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_WebDaQuyModel.V_soSP" Width="1.5" PointX="7.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_WebDaQuyModel.V_tlSP" Width="1.5" PointX="5.75" PointY="11.25" IsExpanded="true" />
+        <AssociationConnector Association="QL_WebDaQuyModel.FK__BaiViet__taiKhoa__182C9B23" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_WebDaQuyModel.fk_loaiSP_chungLoai" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_WebDaQuyModel.FK__CtDonHang__maSP__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_WebDaQuyModel.FK__CtDonHang__soDH__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_WebDaQuyModel.FK__DonHang__maKH__32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_WebDaQuyModel.FK__DonHang__taiKhoa__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_WebDaQuyModel.FK__HinhChiTie__maSP__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_WebDaQuyModel.FK__SanPham__maLoai__24927208" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_WebDaQuyModel.FK__SanPham__taiKhoa__267ABA7A" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,123 @@
+﻿@using WebDaQuy.Models;
+@{
+    var SPs = ViewBag.SP;
+    var hinhs = ViewBag.Hinh;
+}
+@{ CommonInfo x = (CommonInfo)HttpContext.Current.Application["dungChung"];}
+<div class="container">
+    <div class="flex">
+
+        <div class="sidebar">
+            <div class="megamenu-wrapper">
+                <div class="megamenu-head text-center">
+                    <span><i class="fa fa-bars"></i> Danh mục sản phẩm</span>
+                </div>
+                <div class="megamenu-body megamenu-body--hide">
+                    <!-- phần chi tiết danh mục sản phẩm-->
+                    @Html.Partial("_SideBarSimple")
+                </div>
+            </div>
+        </div>
+
+        <!-- Phần navbar -->
+        <div class="content_navbar">
+            <div class="content_nav">
+                @Html.Partial("_NavBar")
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb -->
+    <ul class="breadcrumb">
+        <li><a href="./index.html">Trang chủ</a></li>
+        <li><a href="./allSP.html">Tất cả Sản phẩm</a></li>
+        <li>@ViewBag.Title</li>
+    </ul>
+    <!-- CONTENT -->
+    <div class="content_chiTiet flex space-between">
+        <div class="zoomLes-img">
+            <div class="zoom-Big">
+                <img src="~/Images/@SPs.hinhDD" alt="" class="zoom-imgBig">
+            </div>
+            <div class="zoom-Small">
+                @foreach (var i in hinhs)
+                {
+                    <img src="~/Images/@i.hinhCT" alt="" class="zoom-imgSmall">
+                }
+            </div>
+        </div>
+        <div class="product">
+            <h2>@SPs.tenSP</h2>
+            <div class="flex space-between">
+                <!-- Chi tiết sản phẩm -->
+                <div class="product-details">
+                    <p>Giá: <span class="giaSP">@SPs.giaBan,000₫</span></p>
+                    <p class="product-p_dam">Số lượng</p>
+                    <div class="quantity_btn btn-group">
+                        <button class="btn int" onclick="decrement()"><i class="fa fa-minus"></i></button>
+                        <button id="js-root" class="btn"></button>
+                        <button class="btn" onclick="increment()"><i class="fa fa-plus"></i></button>
+                    </div>
+                    <div class="flex">
+                        @using (Html.BeginForm("AddToCart", "Home", FormMethod.Post))
+                        {
+                            <input type="hidden" name="maSP" value="@SPs.maSP" />
+                            <button class="btn addBag add-cart">Thêm vào giỏ hàng</button>
+                            <button class="btn buyNow add-cart">Mua ngay</button>
+                        }
+                    </div>
+                    <p>
+                        @SPs.noiDung
+                    </p>
+                </div>
+                <div class="product-policy">
+                    <a href=""><button class="btn"><i class="fa fa-truck xoay"></i> CHÍNH SÁCH VẬN CHUYỂN</button></a>
+                    <a href=""><button class="btn"><i class="fa-regular fa-credit-card"></i> PHƯƠNG THỨC THANH TOÁN</button></a>
+                    <a href=""><button class="btn"><i class="fa-regular fa-life-ring"></i> HỖ TRỢ 24/7</button></a>
+                    <a href=""><button class="btn"><i class="fa-solid fa-rotate-right"></i> HỖ TRỢ HOÀN TRẢ</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Sản phẩm liên quan -->
+    <div class="home-collection">
+        <div class="home-collection-header">
+            <a href="#">SẢN PHẨM LIÊN QUAN</a>
+        </div>
+        <div class="home-collection-body flex">
+            @foreach (var i in x.V_allSPs)
+            {
+                <div class="home-collection-item">
+                    <a href="@Url.Action("Index", "detailSP", new {@IDSP = (string)i.maSP })">
+                        <div class="home-collection-img"><img src="~/Images/@i.hinhDD" alt=""></div>
+                        <p class="tenSP">@i.tenSP</p>
+                        <p class="giaSP">@i.giaBan,000₫</p>
+                        <button class="home-collection-btn js-giayViet">
+                            <a href="#"><i class="fa-solid fa-eye"></i></a>
+                            CHI TIẾT
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </button>
+                    </a>
+                </div>
+            }
+        </div>
+        <div class="home-collection-footer">
+            <button class="btn"><a href="./allSP.html">XEM THÊM <i class="fa-solid fa-chevron-right"></i> </a></button>
+        </div>
+    </div>
+</div>
+<script>
+    //quantity_btn
+    var data = 1;
+    document.getElementById('js-root').innerText = data;
+
+    function decrement() {
+        if (data > 1) {
+            data = data - 1;
+            document.getElementById('js-root').innerText = data;
+        }
+    }
+    function increment() {
+        data = data + 1;
+        document.getElementById('js-root').innerText = data;
+    }
+</script>

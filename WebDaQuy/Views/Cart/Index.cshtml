@@ -1,0 +1,121 @@
+﻿@using WebDaQuy.Models;
+@{
+    CartShop x = ViewData["Cart"] as CartShop;
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/css/prettyPhoto.css" rel="stylesheet">
+    <link href="~/Content/css/price-range.css" rel="stylesheet">
+    <link href="~/Content/css/animate.css" rel="stylesheet">
+    <link href="~/Content/css/main.css" rel="stylesheet">
+    <link href="~/Content/css/responsive.css" rel="stylesheet">
+    <style>
+        table.table-condensed {
+            font-size: 16px;
+        }
+
+        .bg-wh {
+            background-color: #ffffffc4 !important;
+        }
+
+        .top20 {
+            margin-top: 20px;
+        }
+
+        p.top20 {
+            margin-top: 25px;
+        }
+    </style>
+</head>
+<div class="container">
+    <table id="cart" class="table table-hover table-condensed">
+        <thead>
+            <tr>
+                <th style="width:50%">Tên sản phẩm</th>
+                <th style="width:10%">Giá</th>
+                <th style="width:8%">Số lượng</th>
+                <th style="width:15%" class="text-center">Thành tiền</th>
+                <th style="width:10%"> </th>
+            </tr>
+        </thead>
+        <tbody class="bg-wh">
+            @{
+                foreach (CtDonHang i in x.SanPhamDC.Values)
+                {
+                    <tr>
+                        <td data-th="Product">
+                            <div class="row">
+                                <div class="col-sm-4 hidden-xs">
+                                    <img src="~/Images/@CommonInfo.getImageProductByID(i.maSP)" alt=" " class="img-responsive" width="150">
+                                </div>
+                                <div class="col-sm-8">
+                                    <h4 class="nomargin top20">@CommonInfo.getNameProductByID(i.maSP)</h4>
+                                    <p>Mã sản phẩm : @i.maSP</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td data-th="Price">
+                            <p class="top20">@string.Format("{0:###,###}", i.giaBan),000</p>
+                        </td>
+                        <td data-th="Quantity">
+                            <div class="quantity_btn btn-group top20" style="display: flex">
+                                @using (Html.BeginForm("Decrease", "Cart", FormMethod.Post))
+                                {
+                                    <input type="hidden" name="maSP" value="@i.maSP" />
+                                    <button class="btn int"><i class="fa fa-minus"></i></button>
+                                }
+                                <button id="js-root" class="btn" value="@i.soLuong">@i.soLuong</button>
+                                @using (Html.BeginForm("Increase", "Cart", FormMethod.Post))
+                                {
+                                    <input type="hidden" name="maSP" value="@i.maSP" />
+                                    <button class="btn"><i class="fa fa-plus"></i></button>
+                                }
+                            </div>
+                        </td>
+                        <td data-th="Subtotal" class="text-center">
+                            <p class="top20">@string.Format("{0:###,###}", x.moneyOfOneProduct(i)),000</p>
+                        </td>
+                        <td class="actions" data-th="">
+                            @using (Html.BeginForm("Delete", "Cart", FormMethod.Post))
+                            {
+                                <input type="hidden" name="maSP" value="@i.maSP" />
+                                <button class="btn btn-danger btn-sm top20">
+                                    <i class="fa fa-trash-o"></i>
+                                </button>
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+
+        </tbody>
+        <tfoot>
+            <tr class="visible-xs">
+                <td class="text-center">
+                    <strong>Tổng: @string.Format("{0:###,###}", x.totalOfCartShop()),000</strong>
+                </td>
+            </tr>
+            <tr class="visible-xs">
+                <td class="text-center">
+                    <strong>10% Thuế VAT : @string.Format("{0:###,###}", (x.totalOfCartShop() * 10 / 100)),000</strong>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="@Url.Action("Index","Home")" class="btn btn-warning"><i class="fa fa-angle-left"></i> Tiếp tục mua hàng</a>
+                </td>
+                <td colspan="2" class="hidden-xs"> </td>
+                <td class="hidden-xs text-center">
+                    <strong>Tổng tiền: @string.Format("{0:###,###}", (x.totalOfCartShop() + (x.totalOfCartShop() * 10 / 100))),000VNĐ</strong>
+                </td>
+                <td>
+                    <a href="@Url.Action("Index","CheckOut")" class="btn btn-success btn-block">Thanh toán <i class="fa fa-angle-right"></i></a>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+

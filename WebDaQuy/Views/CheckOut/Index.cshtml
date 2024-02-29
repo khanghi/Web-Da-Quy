@@ -1,0 +1,131 @@
+﻿@model WebDaQuy.Models.KhachHang
+@using WebDaQuy.Models;
+@{
+    CartShop x = ViewData["Cart"] as CartShop;
+    ViewBag.Title = "";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/css/prettyPhoto.css" rel="stylesheet">
+    <link href="~/Content/css/price-range.css" rel="stylesheet">
+    <link href="~/Content/css/animate.css" rel="stylesheet">
+    <link href="~/Content/css/main.css" rel="stylesheet">
+    <link href="~/Content/css/responsive.css" rel="stylesheet">
+    <style>
+        .giohang {
+            display: flex;
+            justify-content: space-between;
+            width: 700px;
+            font-size: 16px;
+        }
+
+        #cart_items {
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<section id="cart_items">
+    <div class="container">
+        <div class="shopper-informations">
+            @using (Html.BeginForm("Index", "Checkout", FormMethod.Post))
+            {
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="shopper-info">
+                            <div class="form-group">
+                                <label for="hoTen">Họ và tên</label>
+
+                                @Html.TextBoxFor(m => m.tenKH, new { @class = "form-control", @placeholder = "Nguyen Van A..." })
+
+                                <label for="kh_dienthoai">Điện thoại</label>
+                                @Html.TextBoxFor(m => m.soDT, new { @class = "form-control", @placeholder = "0987xxxxxx" })
+
+                            </div>
+                            <div class="form-group">
+                                <label for="kh_gioitinh">Giới tính</label>
+                                <label class="radio-inline">
+                                    @Html.RadioButtonFor(m => m.gioiTinh, new { @name = "1" }) Nam
+                                </label>
+                                <label class="radio-inline">
+                                    @Html.RadioButton("0", false) Nữ
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="shopper-to">
+                            <div class="form-group">
+                                <label for="mail">Email</label>
+                                @Html.TextBoxFor(m => m.email, new { @class = "form-control", @placehoder = "an@gmail.com" })
+                            </div>
+                            <div class="form-group">
+                                <label for="addr">Địa chỉ</label>
+                                @Html.TextBoxFor(m => m.diaChi, new { @class = "form-control", @placeholder = "tỉnh/thành phố" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="order-message">
+                            <div class=" form-group">
+                                <label for="ghiChu">Ghi chú</label>
+                                @Html.TextAreaFor(m => m.ghiChu, new
+                                {
+                                    @class = "form-control",
+                                    @placeholder = "Ghi chú về đơn hàng...",
+                                @row = "8",
+                                    @style = "padding-bottom: 9px;"
+                                })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group text-center">
+                        <a href="@Url.Action("Index","Cart")" class="btn btn-danger">Trở lại giỏ hàng &larr;</a>
+                        <button type="submit" class="btn btn-primary" style="margin-top:0px">
+                            Đặt hàng
+                        </button>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="row" style="width: 1200px">
+            <div class="col-md-10 order-md-2 mb-4">
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-muted">Giỏ hàng</span>
+                </h4>
+
+                <ul class="list-group mb-3">
+                    @{
+                        foreach (CtDonHang i in x.SanPhamDC.Values)
+                        {
+                            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                <div class="giohang">
+                                    <p class="my-0">@CommonInfo.getNameProductByID(i.maSP)</p>
+                                    <p class="text-muted">
+                                        @string.Format("{0:###,###}", i.giaBan),000
+                                        x @i.soLuong
+                                    </p>
+                                </div>
+                                <p class="text-muted">
+                                    @string.Format("{0:###,###}", x.moneyOfOneProduct(i)),000
+                                </p>
+                            </li>
+
+                        }
+                    }
+
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Tổng thành tiền</span>
+                        <strong>@string.Format("{0:###,###}", (x.totalOfCartShop() + (x.totalOfCartShop() * 10 / 100))),000 VNĐ</strong>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</section> <!--/#cart_items-->
